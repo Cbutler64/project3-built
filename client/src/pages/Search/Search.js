@@ -250,7 +250,31 @@ class Search extends Component {
             </Col>
             <Col size="md-6">
               <Subtitle data="My Videos"></Subtitle>
+              {this.state.userVideoObjs.length ? (
 
+                <ListItem className="video-container">
+
+                  {this.state.userVideoObjs.map(result => (
+
+                    <VideoCard image={result.snippet.thumbnails.high.url}
+                      title={result.snippet.title}
+                      key={result.id}
+                      id={result.id}
+                      handleBtnPlay={this.handleBtnPlay}
+                      handleBtnSave={this.handleBtnSave}
+                      alreadySaved={this.alreadySaved}
+                    >
+                    </VideoCard>
+
+
+                  ))}
+
+                </ListItem>
+
+
+              ) : (
+                  <h3></h3>
+                )}
             </Col>
 
 
