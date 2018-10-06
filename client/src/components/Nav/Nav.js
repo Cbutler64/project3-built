@@ -1,28 +1,38 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Sw } from "react-router-dom";
-import { Link } from "react-router-dom";
+import { NavLink } from 'react-router-dom'
 import "./Nav.css";
 
-// Depending on the current path, this component sets the "active" class on the appropriate navigation link item
+const STYLE ={
+  navLink:{
+    color: 'white',
+  },
+  navLinkActive : {
+    textDecorationLine: 'underline',
+    textDecorationStyle: 'wavy'
+  },
+}
+
+// Depending on the current path, this component sets the "active" class on the appropriate navigation NavLink item
 const Navbar = props => (
  
   <nav className="navbar navbar-expand-lg navbar-dark bg-info">
-    <Link to="#" className="navbar-brand" >
+    <NavLink to="#" className="navbar-brand"  >
       Vfriend
-    </Link>
+    </NavLink>
     <div>
       <ul className="navbar-nav">
         <li
           className={
-            window.location.pathname === "/" ||
-            window.location.pathname === "/"
+            window.location.pathname === "/" 
               ? "nav-item active"
               : "nav-item"
           }
+          
         >
-          <Link to="/Home" className="nav-link">
+          <NavLink to="/Home" className="nav-NavLink" style={STYLE.navLink} activeStyle={STYLE.navLinkActive}>
             Home
-          </Link>
+          </NavLink>
    
         </li>
         <li
@@ -32,9 +42,9 @@ const Navbar = props => (
               : "nav-item"
           }
         >
-          <Link to="/search" className="nav-link">
+          <NavLink to="/search" className="nav-NavLink" style={STYLE.navLink} activeStyle={STYLE.navLinkActive} >
             Search
-          </Link>
+          </NavLink>
         </li>
         <li
           className={
@@ -43,9 +53,9 @@ const Navbar = props => (
               : "nav-item"
           }
         >
-          <Link to="/members" className="nav-link">
+          <NavLink to="/members" className="nav-NavLink" style={STYLE.navLink} activeStyle={STYLE.navLinkActive} >
             Members
-          </Link>
+          </NavLink>
         </li>
 
 
@@ -56,9 +66,9 @@ const Navbar = props => (
               : "nav-item test"
           } id="sett"
         >
-          <Link to="/" className="nav-link">
+          <NavLink to="/" className="nav-NavLink" style={STYLE.navLink} >
           Log Out
-          </Link>
+          </NavLink>
         </li>
       </ul>
     </div>
