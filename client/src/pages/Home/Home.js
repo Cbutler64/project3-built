@@ -7,6 +7,7 @@ import { List, ListItem } from "../../components/List";
 import { Input, TextArea, FormBtn } from "../../components/Form";
 import Hero from "../../components/Hero";
 import Nav from "../../components/Nav";
+import Subtitle from '../../components/Subtitle';
 import SearchForm from "../../components/SearchForm";
 import Youtube from '../../components/Youtube';
 // import ModalPop from "../../components/Modal";
@@ -127,10 +128,12 @@ class Home extends Component {
         </Hero>
         <br></br><br></br>
         <Container fluid>
+        <Row>
 
-          <Col size="md-7">
+          <Col size="md-3">
 
-            <h4 className="text-center text-white" >My Profile</h4>
+            <Subtitle data="My Profile"></Subtitle>
+
             <ProfileCard
               id={this.state.user._id}
               key={this.state.user._id}
@@ -140,34 +143,16 @@ class Home extends Component {
               gender={this.state.user.gender}
 
             />
-            {/* <Container className = "video-container">
-
-        
-       
-          
-              <ListItem className = "video-container">
-                
-                {this.state.apiResults.map(result => (
          
-                  <VideoCard image= {result.snippet.thumbnails.high.url} 
-                  title = {result.snippet.title}
-                 
-                  ></VideoCard> 
-                  
-                  
-                ))}
-               
-              </ListItem>
-          
-         
-         
-     
-        </Container> */}
           </Col>
-          <Col size="md-3">
-            <Jumbotron>
-              <h1>My Friends On My List</h1>
-            </Jumbotron>
+
+          <Col size="md-5">
+          <Subtitle data="My Videos"></Subtitle>
+
+          </Col>
+
+          <Col size="md-4">
+          <Subtitle data="My Friends"></Subtitle>
           
               <List>
                 {this.state.userFriendObjs.map(user => {
@@ -188,6 +173,7 @@ class Home extends Component {
               </List>
 
           </Col>
+          </Row>
         </Container>
       </div>
     );

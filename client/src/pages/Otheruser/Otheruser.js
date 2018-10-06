@@ -3,6 +3,7 @@ import Jumbotron from "../../components/Jumbotron";
 import DeleteBtn from "../../components/DeleteBtn";
 import API from "../../utils/API";
 import { Col, Row, Container } from "../../components/Grid";
+import Subtitle from '../../components/Subtitle';
 import { List, ListItem } from "../../components/List";
 import { Input, TextArea, FormBtn } from "../../components/Form";
 import Hero from "../../components/Hero";
@@ -126,10 +127,10 @@ class Otheruser extends Component {
         </Hero>
         <br></br><br></br>
         <Container fluid>
+          <Row>
+          <Col size="md-3">
 
-          <Col size="md-7">
-
-            <h4 className="text-center text-white" >My Profile</h4>
+           <Subtitle data="Profile"></Subtitle>
             <ProfileCard
               id={this.state.user._id}
               key={this.state.user._id}
@@ -163,10 +164,10 @@ class Otheruser extends Component {
      
         </Container> */}
           </Col>
-          <Col size="md-3">
-            <Jumbotron>
-              <h1>My Friends On My List</h1>
-            </Jumbotron>
+          <Col size="md-5">
+          <Subtitle data="Videos"></Subtitle></Col>
+          <Col size="md-4">
+           <Subtitle data="Friends"></Subtitle>
           
               <List>
                 {this.state.userFriendObjs.map(user => {
@@ -187,6 +188,7 @@ class Otheruser extends Component {
               </List>
 
           </Col>
+          </Row>
         </Container>
       </div>
     );

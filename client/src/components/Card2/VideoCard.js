@@ -6,7 +6,7 @@ import CardBtnSave from '../../components/CardBtnSave'
 const VideoCard = props => {
   // console.log(props);
   return (
-  <div className="card" >
+  <div className="card-video" >
     <div className="img-container">
       <img  src={props.image} />
     </div>

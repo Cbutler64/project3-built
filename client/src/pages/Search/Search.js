@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import Jumbotron from "../../components/Jumbotron";
 import DeleteBtn from "../../components/DeleteBtn";
+import Subtitle from '../../components/Subtitle'
 import API from "../../utils/API";
 import { Col, Row, Container } from "../../components/Grid";
 import { List, ListItem } from "../../components/List";
@@ -66,7 +67,7 @@ class Search extends Component {
         query = query + this.state.userVideos[i] + ",";
       }
       else {
-        query =  this.state.userVideos[i] + ",";
+        query = this.state.userVideos[i] + ",";
       }
     }
     var queryState = "multiSearch"
@@ -192,23 +193,23 @@ class Search extends Component {
 
         <Nav userLogged={this.state.user.username} />
         <Hero backgroundImage="https://coolbackgrounds.io/images/backgrounds/sea-edge-311c5cd5.png">
-          <h1>Hi {this.state.user.username}! Start browsing </h1>
+          <h1>Hi {this.state.user.username}! You are Officially A Vfriender Now :) </h1>
 
         </Hero>
         <br></br><br></br>
         <Container fluid>
+          <Row>
+            <Col size="md-6">
 
-          <Col size="md-6">
+              <Subtitle data="Look For Your Favorite videos"></Subtitle>
 
-            <h4 className="text-center text-white" >Dispaly Stuff Here</h4>
+              <SearchForm
+                searchQuery={this.state.searchQuery}
+                handleFormSubmit={this.handleFormSubmit}
+                handleInputChange={this.handleInputChange}
+              />
 
-            <SearchForm
-              searchQuery={this.state.searchQuery}
-              handleFormSubmit={this.handleFormSubmit}
-              handleInputChange={this.handleInputChange}
-            />
 
-            <Container className="video-container">
               <Modal show={this.state.show} handleClose={this.hideModal}>
                 <p>Modal</p>
                 <Youtube src={this.state.currentVideoID}></Youtube>
@@ -237,7 +238,7 @@ class Search extends Component {
 
 
               ) : (
-                  <h3></h3>
+                  <h3 className="text-white"></h3>
                 )}
 
 
@@ -245,50 +246,15 @@ class Search extends Component {
 
 
 
-            </Container>
-          </Col>
 
-          <Col size="md-4 ">
+            </Col>
+            <Col size="md-6">
+              <Subtitle data="My Videos"></Subtitle>
 
-<h4 className="text-center text-white" >My Videos</h4>
-
-
-<Container className="video-container">
-
-  {this.state.userVideoObjs.length ? (
-
-    <ListItem className="video-container">
-
-      {this.state.userVideoObjs.map(result => (
-
-        <VideoCard image={result.snippet.thumbnails.high.url}
-          title={result.snippet.title}
-          key={result.id}
-          id={result.id}
-          handleBtnPlay={this.handleBtnPlay}
-          handleBtnSave={this.handleBtnSave}
-          alreadySaved={this.alreadySaved}
-        >
-        </VideoCard>
+            </Col>
 
 
-      ))}
-
-    </ListItem>
-
-
-  ) : (
-      <h3></h3>
-    )}
-
-
-
-
-
-
-</Container>
-</Col>
-
+          </Row>
         </Container>
       </div>
     );

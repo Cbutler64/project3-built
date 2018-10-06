@@ -5,6 +5,7 @@ import API from "../../utils/API";
 import { Col, Row, Container } from "../../components/Grid";
 import { List, ListItem } from "../../components/List";
 import { Input, TextArea, FormBtn } from "../../components/Form";
+import Subtitle from '../../components/Subtitle'
 import Nav from "../../components/Nav";
 import FriendCard from "../../components/FriendCard";
 import Wrapper from "../../components/Wrapper";
@@ -25,6 +26,8 @@ class Members extends Component {
     photo: "",
     gender: "",
     password: "",
+    currentuserID: "",
+    userFriendObjs: []
 
   };
 
@@ -32,6 +35,30 @@ class Members extends Component {
   componentDidMount() {
     this.loadBooks();
   }
+
+  loadFriends = () => {
+    API.getBooks()
+      .then(res => {
+        this.setState({
+          users: res.data,
+        })
+        
+        
+        console.log(this.state.users)
+        var userFriendObjs = []
+        for (var i = 0; i < this.state.users.length; i++){
+          if (this.state.userFriends.includes(this.state.users[i]._id))
+          {
+            userFriendObjs.push(this.state.users[i])
+          }
+
+        }
+        this.setState({ userFriendObjs: userFriendObjs })
+        console.log(this.state.userFriendObjs)
+        
+      })
+      .catch(err => console.log(err));
+  };
 
   // Loads all books  and sets them to this.state.books
   loadBooks = () => {
@@ -86,6 +113,7 @@ class Members extends Component {
       [name]: value
     });
   };
+  
   goToFriend = id => {
     console.log(id);
     window.location.href = "/otheruser/" + id
@@ -147,12 +175,13 @@ class Members extends Component {
         <h1>Vfriend Members</h1>
 
       </Hero>
+      <br></br><br></br>
       <Container fluid>
 
         <Row>
           <Col size="md-8">
 
-
+          <Subtitle data="Members"></Subtitle>
 
             <Wrapper>
               <MemberBox>
@@ -175,6 +204,27 @@ class Members extends Component {
               </MemberBox>
 
             </Wrapper>
+          </Col>
+
+          <Col size="md-4">
+          <Subtitle data="My friends"></Subtitle>
+          <List>
+                {this.state.userFriendObjs.map(user => {
+                  return (
+                    <ListItem key={user._id}>
+                      <a href={"/otheruser/" + user._id}>
+                      <strong>
+                          {user.photo}  
+                        </strong>
+
+                      </a>
+                      <strong>
+                           {user.username}
+                        </strong>
+                    </ListItem>
+                  );
+                })}
+              </List>
           </Col>
         </Row>
       </Container>

@@ -1,9 +1,8 @@
-.card {
+.card-video {
     background: #fff;
-    border-radius: 10px;
     height: 350px;
     margin: auto;
-    /* position: relative; */
+    position: relative;
     width: 325px;
     box-shadow: 0 3px 6px #999, 0 3px 6px #999;
     align-items: center;
@@ -11,25 +10,25 @@
     
   }
   
-  .card > .img-container {
+  .card-video > .img-container {
     height: 70%;
     overflow: hidden;
     text-align: center;
-    background: rgb(6, 28, 53);
+    background: rgb(32, 64, 102);
   }
 
-  .card > .img-container > img {
+  .card-video > .img-container > img {
     width: 60%;
     height: 100%;
   }
   
-  .card > .content {
-    /* padding-left: 1rem; */
+  .card-video > .content {
+    text-align: center;
     padding-right: 1rem;
     font-size: 15px;
   }
   
-  .card > .content {
+  .card-video > .content {
     margin-top: 10px;
   }
   
